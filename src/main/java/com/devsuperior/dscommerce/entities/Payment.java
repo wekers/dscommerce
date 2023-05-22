@@ -15,7 +15,7 @@ public class Payment {
     private Instant moment;
 
     @OneToOne
-    @MapsId //vai colocar o mesmo valor id do order no payment como "order_id"
+    @MapsId /* vai colocar o mesmo valor id do order no payment como "order_id" */
     private Order order;
 
     public Payment(){
