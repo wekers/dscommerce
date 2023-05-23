@@ -21,6 +21,7 @@ target/
 
 ### Vim
 *.sw*
+*.directory
 
 ### NetBeans ###
 /nbproject/private/
@@ -34,3 +35,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### ~file
+.*~
