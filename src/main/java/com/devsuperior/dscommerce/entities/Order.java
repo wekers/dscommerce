@@ -2,7 +2,6 @@ package com.devsuperior.dscommerce.entities;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
