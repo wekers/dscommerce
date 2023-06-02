@@ -51,6 +51,12 @@ public class ProductService {
     }
 
     @Transactional
+    public void delete(Long id){
+        repository.deleteById(id);
+
+    }
+
+    @Transactional
     public ProductDTO update(Long id, ProductDTO dto) {
 
         Product entity = repository.getReferenceById(id);
