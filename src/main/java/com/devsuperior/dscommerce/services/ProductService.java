@@ -5,6 +5,7 @@ import com.devsuperior.dscommerce.dto.ProductDTO;
 import com.devsuperior.dscommerce.dto.ProductMinDTO;
 import com.devsuperior.dscommerce.entities.Category;
 import com.devsuperior.dscommerce.entities.Product;
+import com.devsuperior.dscommerce.repositories.CategoryRepository;
 import com.devsuperior.dscommerce.repositories.ProductRepository;
 import com.devsuperior.dscommerce.services.exceptions.DatabaseException;
 import com.devsuperior.dscommerce.services.exceptions.ResourceNotFoundException;
@@ -22,6 +23,9 @@ public class ProductService {
 
     @Autowired
     private ProductRepository repository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     //do spring, não é do jakarta
     @Transactional(readOnly = true)
@@ -92,10 +96,17 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
+
         entity.getCategories().clear(); //limpa a categoria antes de atualizar
-        for (CategoryDTO catDto : dto.getCategories()){ // copiando as categorias
-            Category cat = new Category();
-            cat.setId(catDto.getId());
+        for (CategoryDTO catDto : dto.getCategories()){
+
+            // copiando as categorias, nas não retorna o nome
+            //Category cat = new Category();
+            //cat.setId(catDto.getId());
+
+            /* retornando o nome da categoria também */
+            /* não esquecer tem que fazer o CategoryRepository */
+            Category cat = categoryRepository.getReferenceById(catDto.getId());
             entity.getCategories().add(cat);
 
         }
