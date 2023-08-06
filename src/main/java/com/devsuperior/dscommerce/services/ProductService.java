@@ -38,9 +38,9 @@ public class ProductService {
 
         // ou numa forma mais reduzida
 
-            Product product = repository.findById(id).orElseThrow(
-                    () -> new ResourceNotFoundException("Recurso não encontrado"));
-            return new ProductDTO(product);
+        Product product = repository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Recurso não encontrado"));
+        return new ProductDTO(product);
 
 
     }
@@ -79,15 +79,15 @@ public class ProductService {
 
     @Transactional
     public ProductDTO update(Long id, ProductDTO dto) {
-    try{
-        Product entity = repository.getReferenceById(id);
-        copyDtoToEntity(dto, entity);
-        entity = repository.save(entity);
-        return new ProductDTO(entity);
-    }
-    catch (EntityNotFoundException e){
-        throw new ResourceNotFoundException("Recurso não encontrado");
-    }
+        try{
+            Product entity = repository.getReferenceById(id);
+            copyDtoToEntity(dto, entity);
+            entity = repository.save(entity);
+            return new ProductDTO(entity);
+        }
+        catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        }
 
     }
 
