@@ -28,12 +28,16 @@ public class OrderService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AuthService authService;
+
     //do spring, não é do jakarta
     @Transactional(readOnly = true)
     public OrderDTO findById(Long id){
 
        Order order = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Recurso não encontrado"));
+        authService.validadeSelfOrAdmin(order.getClient().getId());
         return new OrderDTO(order);
 
 
